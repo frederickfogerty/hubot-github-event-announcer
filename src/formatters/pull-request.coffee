@@ -15,10 +15,7 @@ openEvent = ({data}) ->
       data.action
 
   """
-  #{sender.login} #{verb} Pull Request ##{data.number} on #{repo.full_name}
-  Title: #{pullRequest.title}
-
-  #{data.html_url}
+  [#{repo.full_name}] #{sender.login} #{verb} PR ##{data.number}: #{pullRequest.title}
   """
 
 assignEvent = ({data}) ->
@@ -30,10 +27,7 @@ assignEvent = ({data}) ->
   assignee = 'themselves' if assignee is sender.login
 
   """
-  #{sender.login} #{verb} #{assignee} to Pull Request ##{data.number} on #{repo.full_name}
-  Title: #{pullRequest.title}
-
-  #{data.html_url}
+  [#{repo.full_name}] #{sender.login} #{verb} #{assignee} to PR ##{data.number}: #{pullRequest.title}
   """
 
 labelEvent = ({data}) ->
@@ -47,8 +41,5 @@ labelEvent = ({data}) ->
       when 'unlabeled' then 'removed'
 
   """
-  #{sender.login} #{verb} the label #{label} to Pull Request ##{data.number} on #{repo.full_name}
-  Title: #{pullRequest.title}
-
-  #{data.html_url}
+  [#{repo.full_name}] #{sender.login} #{verb} the label #{label} to PR ##{data.number}: #{pullRequest.title}
   """

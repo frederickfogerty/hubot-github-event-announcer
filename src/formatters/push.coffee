@@ -19,7 +19,6 @@ module.exports = (event) ->
   data = event.data
   return unless data.commits and data.commits.length > 0
 
-  message = "#{data.pusher.name} pushed #{ordinal(data.commits.length, 'commit')} to #{data.repository.full_name}"
+  message = "[#{data.repository.full_name}] #{data.pusher.name} pushed #{ordinal(data.commits.length, 'commit')}"
   message += "\n * #{commit.message.split("\n")[0]}" for commit in data.commits
-  message += "\n\n#{data.compare}"
   message
